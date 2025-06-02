@@ -5,7 +5,7 @@ import { HandThumbUpIcon } from "@heroicons/react/24/outline";
 import { useEffect, useMemo, useState } from "react";
 import { TableColumn } from "react-data-table-component";
 import { Tooltip } from "react-tooltip";
-import { fireToastError } from "@utils/toaster";
+import { fireToastError, fireToastSuccess } from "@utils/toaster";
 import { api } from "@utils/apis";
 import moment from "moment";
 import { useAppDispatch, useAppSelector } from "src/state/hooks";
@@ -55,6 +55,7 @@ const PostList = () => {
   const handleLike = async (post: Partial<PostListType>) => {
     try {
       await api.post.postsLike({ postId: post.id || "" });
+      fireToastSuccess("Liked");
     } catch (error: any) {
       fireToastError(error?.response?.data?.message ?? "Something went wrong");
 

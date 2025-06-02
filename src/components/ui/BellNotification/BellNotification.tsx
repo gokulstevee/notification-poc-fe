@@ -79,8 +79,6 @@ const BellNotification = () => {
     setNotificationList([...filteredNotificationList!]);
   };
 
-  console.log("notificationList...", notificationList);
-
   return (
     <div className="relative z-[999]">
       <div
