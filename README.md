@@ -1,55 +1,76 @@
-# React + TypeScript + Vite
+# Notification System Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + Typescript + Vite frontend for real-time notifications and post management.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Authentication:** Signup and login with form validation.
+- **Posts:** Create, list, and manage posts.
+- **Real-time Notifications:** Bell notification(In-App) with live updates via Server-Sent Events (SSE).
+- **Responsive UI:** Built with Tailwind CSS and React.
+- **Protected Routes:** Auth and app layouts with React Router.
+- **API Integration:** Axios with interceptor for token handling.
+- **Reusable Components:** Buttons, modals, tables, and more.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Getting Started
+
+### 1. **Clone the Repository**
+
+```sh
+git clone https://github.com/your-org/insyd-notification-system-frontend.git
+cd insyd-notification-system-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. **Install Dependencies**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```sh
+yarn install
+# or
+npm install
 ```
 
+### 3. **Environment Variables**
+
+Create a `.env` file in the project root:
+
+```
+VITE_BACKEND_BASE_URL=http://localhost:8000
+```
+
+Adjust the URL to match your backend.
+
+### 4. **Run the Development Server**
+
+```sh
+npm run dev
+```
+
+Visit [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal).
+
+---
+
+## Build for Production
+
+```sh
+npm run build
+```
+
+To preview the production build:
+
+```sh
+npm run preview
+```
+
+---
+
+## Notifications
+
+- Uses **Server-Sent Events (SSE)** for real-time notifications.
+- Requires backend endpoint (e.g. `/sse/v1/events/notification`) that supports SSE and accepts a Bearer token.
+- Notifications are displayed in a dropdown bell icon with badge.
+
+---
