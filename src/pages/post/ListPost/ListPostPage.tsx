@@ -6,9 +6,16 @@ import PostList from "../components/List/PostList";
 import CreatePostModal from "../components/Modal/CreatePostModal";
 import { useState } from "react";
 import BellNotification from "@components/ui/BellNotification/BellNotification";
+import SecondaryButton from "@components/Button/SecondaryButton";
 
 const ListPostPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
 
   return (
     <>
@@ -16,6 +23,28 @@ const ListPostPage = () => {
         <p className="text-[1.2rem]">Posts</p>
 
         <div className="flex items-center gap-4">
+          <SecondaryButton
+            className="px-[0.8rem] py-[0.3rem] rounded-md"
+            onClick={() => handleLogout()}
+          >
+            Logout
+          </SecondaryButton>
+
+          <div>
+            <BellNotification />
+          </div>
+        </div>
+      </HeaderWrapper>
+
+      {isModalOpen && (
+        <CreatePostModal
+          isOpen={isModalOpen}
+          close={() => setIsModalOpen(false)}
+        />
+      )}
+
+      <ContainerWrapper>
+        <div className="flex items-center justify-end">
           <PrimaryButton
             className="px-[0.8rem] py-[0.3rem] rounded-md"
             onClick={() => setIsModalOpen(true)}
@@ -25,19 +54,8 @@ const ListPostPage = () => {
               Create
             </div>
           </PrimaryButton>
-
-          <div>
-            <BellNotification />
-          </div>
         </div>
-      </HeaderWrapper>
 
-      <CreatePostModal
-        isOpen={isModalOpen}
-        close={() => setIsModalOpen(false)}
-      />
-
-      <ContainerWrapper>
         <PostList />
       </ContainerWrapper>
     </>
