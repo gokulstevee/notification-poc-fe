@@ -11,6 +11,7 @@ import { setRefreshToPullUpdateList } from "src/state/reducers/post";
 import * as Yup from "yup";
 
 const schema = Yup.object().shape({
+  title: Yup.string().trim().required("Title is required"),
   content: Yup.string().trim().required("Content is required"),
 });
 
@@ -26,6 +27,7 @@ const CreatePostModal = ({
 
   const formik = useFormik({
     initialValues: {
+      title: "",
       content: "",
     },
     validationSchema: schema,
@@ -33,7 +35,10 @@ const CreatePostModal = ({
     onSubmit: async (values, { resetForm }) => {
       try {
         dispatch(setIsFixedLoading(true));
-        const resp = await api.post.createPost({ content: values.content });
+        const resp = await api.post.createPost({
+          title: values.title,
+          content: values.content,
+        });
 
         if (resp.status != 201) return fireToastError("Something went wrong");
 
@@ -65,6 +70,32 @@ const CreatePostModal = ({
       isOutSideClosable={false}
     >
       <form noValidate onSubmit={formik.handleSubmit} className="w-[100%]">
+        <div>
+          <label
+            htmlFor="title"
+            className="block text-[0.9rem] font-medium text-[#4a4a4a]"
+          >
+            Title
+            <FormRequiredLabel />
+          </label>
+          <div className="mt-1">
+            <input
+              id="title"
+              name="title"
+              type="text"
+              placeholder="Enter title"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.title}
+              required
+              className="text-[#000000] appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm"
+            />
+          </div>
+          <p className="error text-[0.8rem] text-[#ff2424]">
+            {formik.errors.title && formik.touched.title && formik.errors.title}
+          </p>
+        </div>
+
         <div className="mt-[2rem]">
           <label
             htmlFor="content"

@@ -1,4 +1,5 @@
 import { getUserFromLocalStorage } from "@utils/main";
+import { fireToastError } from "@utils/toaster";
 import axios, { AxiosError } from "axios";
 
 const axiosInstance = axios.create();
@@ -23,6 +24,7 @@ axiosInstance.interceptors.response.use(
   },
   async (error: AxiosError) => {
     if (error.response && error.response.status === 401) {
+      fireToastError("Token expired/Unauthorized");
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       window.location.href = "/login";

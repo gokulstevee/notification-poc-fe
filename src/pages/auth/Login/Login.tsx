@@ -33,8 +33,6 @@ const Login = () => {
                   password: values.password,
                 });
 
-                console.log("resp...", resp);
-
                 if (!resp.data?.user || !resp.data?.token) {
                   return fireToastError("Something went wrong");
                 }
@@ -45,7 +43,7 @@ const Login = () => {
                 navigate("/post");
               } catch (error: any) {
                 fireToastError(
-                  error?.response?.data?.message ?? "Failed to update banner"
+                  error?.response?.data?.message ?? "Something went wrong"
                 );
                 console.log("Error: ", error);
               }

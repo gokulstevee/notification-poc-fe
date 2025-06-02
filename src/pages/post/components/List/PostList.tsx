@@ -13,6 +13,7 @@ import { setRefreshToPullUpdateList } from "src/state/reducers/post";
 
 type PostListType = {
   id: string;
+  title: string;
   content: string;
   createdBy: string;
   createdAt: string;
@@ -72,13 +73,15 @@ const PostList = () => {
         ),
       },
       {
-        name: "Content",
+        name: "Title",
         width: "15rem",
         cell: (row) => (
           <p className="font-medium">
-            {row?.content && row.content.length > 30
-              ? row.content.slice(0, 30) + "..."
-              : row?.content}
+            {row?.title
+              ? row.title.length > 30
+                ? row.title.slice(0, 30) + "..."
+                : row?.title
+              : "-"}
           </p>
         ),
       },

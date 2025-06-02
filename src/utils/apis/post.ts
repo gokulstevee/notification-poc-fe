@@ -1,8 +1,15 @@
 import { objectToQueryString } from "@utils/main";
 import { axiosInstance } from "src/http/interceptor";
 
-export const createPost = ({ content }: { content: string }) => {
+export const createPost = ({
+  title,
+  content,
+}: {
+  title: string;
+  content: string;
+}) => {
   return axiosInstance.post(`/api/v1/posts`, {
+    title,
     content,
   });
 };

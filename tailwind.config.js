@@ -8,7 +8,8 @@ export default {
         secondary: "#F0FDF4",
         danger: "#ff2424",
         "primary-text": "#16A34A",
-        "smoke-grey": "#656565"
+        "smoke-grey": "#656565",
+        "orange-notify": "#F89616",
       },
     },
   },

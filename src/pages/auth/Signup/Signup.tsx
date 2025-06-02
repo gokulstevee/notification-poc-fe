@@ -47,7 +47,7 @@ const Signup = () => {
                 navigate("/login");
               } catch (error: any) {
                 fireToastError(
-                  error?.response?.data?.message ?? "Failed to update banner"
+                  error?.response?.data?.message ?? "Something went wrong"
                 );
                 console.log("Error: ", error);
               }
