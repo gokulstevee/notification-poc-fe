@@ -7,6 +7,7 @@ import CreatePostModal from "../components/Modal/CreatePostModal";
 import { useState } from "react";
 import BellNotification from "@components/ui/BellNotification/BellNotification";
 import SecondaryButton from "@components/Button/SecondaryButton";
+import { getUserFromLocalStorage } from "@utils/main";
 
 const ListPostPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -17,12 +18,15 @@ const ListPostPage = () => {
     window.location.href = "/login";
   };
 
+  const data = getUserFromLocalStorage();
+
   return (
     <>
       <HeaderWrapper className={"flex justify-between"}>
         <p className="text-[1.2rem]">Posts</p>
 
         <div className="flex items-center gap-4">
+          <p>Hi, {data?.user.name}...</p>
           <SecondaryButton
             className="px-[0.8rem] py-[0.3rem] rounded-md"
             onClick={() => handleLogout()}
