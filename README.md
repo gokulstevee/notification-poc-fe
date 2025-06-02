@@ -21,8 +21,8 @@ A modern React + Typescript + Vite frontend for real-time notifications and post
 ### 1. **Clone the Repository**
 
 ```sh
-git clone https://github.com/your-org/insyd-notification-system-frontend.git
-cd insyd-notification-system-frontend
+git clone https://github.com/gokulstevee/notification-poc-fe.git
+cd notification-poc-fe
 ```
 
 ### 2. **Install Dependencies**
