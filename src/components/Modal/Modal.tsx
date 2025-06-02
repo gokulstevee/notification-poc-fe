@@ -73,9 +73,9 @@ const Modal = ({
             <div
               className={`flex items-center px-[1rem] pt-[1rem] pb-[0.4rem] ${
                 modalHeader
-                  ? "justify-between bg-[#EDF8F5]"
+                  ? "justify-between bg-[#eaebf5]"
                   : isClosable
-                  ? "justify-end bg-[#EDF8F5]"
+                  ? "justify-end bg-[#eaebf5]"
                   : ""
               }`}
             >
